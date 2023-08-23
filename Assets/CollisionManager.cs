@@ -2,43 +2,40 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-    private bool sphere4CollidedWithQuad8 = false;
-    private bool sphere3CollidedWithQuad2 = false;
+    public GameObject redball1;
+    public GameObject redball2;
+    public GameObject redballthread; 
+    public GameObject blueball1;
+    public GameObject blueball2;
+    public GameObject blueballthread;  
+    public GameObject Greenball1;
+    public GameObject GreenBall2;
+    public GameObject GreenballThread;
+
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Sphere4" && collision.gameObject.name == "Quad8")
+        if (collision.gameObject.tag=="Redball")
         {
-            sphere4CollidedWithQuad8 = true;
+            redball1.SetActive(false);
+            redball2.SetActive(false);
+            redballthread.SetActive(false);
+        }
+        if (collision.gameObject.tag=="Greenball")
+        {
+            Debug.Log("working");
+            blueball1.SetActive(false);
+            blueball2.SetActive(false);
+            blueballthread.SetActive(false);
+            Greenball1.SetActive(false);
+            GreenBall2.SetActive(false);
+            GreenballThread.SetActive(false);
+
         }
 
-        if (collision.gameObject.name == "Sphere3" && collision.gameObject.name == "Quad2")
-        {
-            sphere3CollidedWithQuad2 = true;
-        }
+
     }
 
-    private void Update()
-    {
-        if (sphere4CollidedWithQuad8)
-        {
-            Destroy(GameObject.Find("Sphere4"));
-            Destroy(GameObject.Find("Sphere5"));
-            Destroy(GameObject.Find("MeshRope2"));
-            sphere4CollidedWithQuad8 = false;
-        }
+   
 
-        if (sphere3CollidedWithQuad2)
-        {
-            for (int i = 1; i <= 6; i++)
-            {
-                Destroy(GameObject.Find("Sphere" + i));
-            }
-            for (int i = 1; i <= 3; i++)
-            {
-                Destroy(GameObject.Find("MeshRope" + i));
-            }
-            sphere3CollidedWithQuad2 = false;
-        }
-    }
 }
